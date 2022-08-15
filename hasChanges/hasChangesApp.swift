@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct hasChangesApp: App {
+    @StateObject private var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
