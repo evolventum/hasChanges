@@ -175,7 +175,9 @@ struct ContentView: View {
         try? moc.save()
     }
     
-
+    init() {
+        refresh()
+    }
     
     
 }
