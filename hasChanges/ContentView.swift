@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
@@ -106,6 +107,7 @@ struct ContentView: View {
             }
         }
     }
+        
     
     @MainActor private func refreshAllServers() async {
             //defer { queueRefresh() }
@@ -136,7 +138,7 @@ struct ContentView: View {
                         server.content = newData
                     }
                 }
-                print("new content is: ", server.content?.map { String(format: "%02x", $0) }.joined() ?? "nil")
+                //print("new content is: ", server.content?.map { String(format: "%02x", $0) }.joined() ?? "nil")
             }
             
             if changesDetected {
@@ -151,7 +153,7 @@ struct ContentView: View {
             
         }
     
-    func refresh() {
+    public func refresh() {
         guard refreshInProgress == false else { return }
         refreshTask?.cancel()
 
@@ -175,9 +177,9 @@ struct ContentView: View {
         try? moc.save()
     }
     
-    init() {
-        refresh()
-    }
+//    init() {
+//        refresh()
+//    }
     
     
 }
